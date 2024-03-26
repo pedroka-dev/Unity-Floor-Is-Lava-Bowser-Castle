@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rigidbody;
-    public float jumpThrust = 3;
-    public float movementThrust = 0.1f;
-    public bool isGrounded = false;
+    Rigidbody rb;
+   
+    public float movementForce = 0.1f;
+    public float maxSpeed = 10f;
+
+    public float jumpForce = 3; 
+    private bool isGrounded = false;
+
+    public float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
+    public float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
 
     void Start()
     {
         //Fetch the Rigidbody from the GameObject with this script attached
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -23,14 +32,37 @@ public class PlayerController : MonoBehaviour
 
     void HandlePlayerJump()
     {
-        if (Input.GetButton("Jump") && isGrounded)
+        //Coyote time allows player to jump a brief moment after being on air
+        if (isGrounded)
         {
-            //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
-            rigidbody.AddForce(0, jumpThrust, 0, ForceMode.Impulse);
-            isGrounded = false;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
-        //if (Input.GetButton("Jump") && rigidbody.velocity.y > 0f)
+        //Jump buffer allows player to jump for a brief moment before touching the ground
+        if (Input.GetButton("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (coyoteTimeCounter > 0f && jumpBufferCounter >0f)
+        {
+            //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
+            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            isGrounded = false;
+            coyoteTimeCounter = 0f;
+            jumpBufferCounter = 0f;
+        }
+
+        //Allows smaller jumps if the players release the jump button early
+        //if (Input.GetButtonUp("Jump") && rigidbody.velocity.y > 0f)
         //{
         //    rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y * 0.5f, rigidbody.velocity.z);
         //}
@@ -38,18 +70,31 @@ public class PlayerController : MonoBehaviour
 
     void HandlePlayerMovement()
     {
+        float currentSpeed = rb.velocity.magnitude;
+        float forceMultiplier;
+
+        //This method decreases player acceleration util almost 0 after getting close to max speed
+        if (currentSpeed > maxSpeed - (maxSpeed / 4))
+        {
+            forceMultiplier = movementForce * maxSpeed - (currentSpeed / maxSpeed);
+        }
+        else
+        {
+            forceMultiplier = 1;
+        }
+
+        //Player movement on the X axis
         if (Input.GetButton("Horizontal"))
         {
             float directionX = Input.GetAxis("Horizontal");
-            Debug.Log(directionX);
-            rigidbody.AddForce(movementThrust * directionX, 0, 0, ForceMode.Impulse);
+            rb.AddForce(movementForce * forceMultiplier * directionX, 0, 0, ForceMode.Impulse);
         }
 
+        //Player movement on the Z axis
         if (Input.GetButton("Vertical"))
         {
             float directionZ = Input.GetAxis("Vertical");
-            Debug.Log(directionZ);
-            rigidbody.AddForce(0, 0, movementThrust * directionZ, ForceMode.Impulse);
+            rb.AddForce(0, 0, movementForce * forceMultiplier * directionZ, ForceMode.Impulse);
         }
     }
 
@@ -65,9 +110,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        //if (collision.gameObject.CompareTag("Floor"))
-        //{
+        if (collision.gameObject.CompareTag("Floor"))
+        {
             isGrounded = false;
-        //}
+        }
     }
 }

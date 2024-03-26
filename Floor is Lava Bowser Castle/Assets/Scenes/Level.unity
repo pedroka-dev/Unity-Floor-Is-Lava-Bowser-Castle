@@ -3290,6 +3290,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1079302571857058429, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
+      propertyPath: m_Drag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1079302571857058429, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
@@ -3302,8 +3306,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
+      propertyPath: coyoteTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: jumpThrust
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: movementThrust
