@@ -974,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5548045309449027911, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.1
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5548045309449027911, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1266,13 +1266,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SMB3 Coins
       objectReference: {fileID: 0}
+    - target: {fileID: 4739887563611876234, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5548045309449027911, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.053
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5548045309449027911, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.04
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5548045309449027911, guid: e2e351270524ee944be5425b3a194ce3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2545,7 +2549,7 @@ GameObject:
   - component: {fileID: 1497930384}
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -3306,6 +3310,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542880937459156051, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: coyoteTime
       value: 0.2
       objectReference: {fileID: 0}
@@ -3323,11 +3331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8734430688078598315, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.25
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8734430688078598315, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8734430688078598315, guid: 79414d583a6c4cf4ca5310c0def88d11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3412,11 +3420,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635562230468631697, guid: 7e0271d8487d8564fb2937ef339c6b43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7635562230468631697, guid: 7e0271d8487d8564fb2937ef339c6b43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.07
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7635562230468631697, guid: 7e0271d8487d8564fb2937ef339c6b43, type: 3}
       propertyPath: m_LocalPosition.z

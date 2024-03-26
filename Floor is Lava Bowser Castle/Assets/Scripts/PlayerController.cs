@@ -98,14 +98,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    void OnCollisionEnter(Collision collision)
+    //OnCollisionStay
+    void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
         }
 
+        if (collision.gameObject.CompareTag("Death"))
+        {
+
+            rb.velocity = Vector3.zero;
+            rb.position = new Vector3(16, 20, 0);
+        }
     }
 
     void OnCollisionExit(Collision collision)
@@ -113,6 +119,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Coin"))
+        {
+            Destroy(collider.gameObject);
         }
     }
 }
