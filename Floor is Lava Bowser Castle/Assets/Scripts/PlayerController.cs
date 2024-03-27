@@ -5,7 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
-   
+    AudioSource audioSource;
+
+    public AudioClip jumpAudioClip;
+    public AudioClip deathAudioClip;
+    public AudioClip pickupCoinsAudioClip;
+
     public float movementForce = 0.1f;
     public float maxSpeed = 10f;
 
@@ -20,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //Fetch the Rigidbody from the GameObject with this script attached
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
         {
             //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            audioSource.PlayOneShot(jumpAudioClip, 0.25f);
             isGrounded = false;
             coyoteTimeCounter = 0f;
             jumpBufferCounter = 0f;
@@ -108,7 +114,9 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Death"))
         {
+            audioSource.PlayOneShot(deathAudioClip, 1.5f);
 
+            //TODO Death
             rb.velocity = Vector3.zero;
             rb.position = new Vector3(16, 20, 0);
         }
@@ -126,6 +134,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Coin"))
         {
+            audioSource.PlayOneShot(pickupCoinsAudioClip, 1.5f);
+
+            //TODO Coin pickup
             Destroy(collider.gameObject);
         }
     }
