@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (coyoteTimeCounter > 0f && jumpBufferCounter >0f)
         {
             //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            rb.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
             audioSource.PlayOneShot(jumpAudioClip, 0.25f);
             isGrounded = false;
             coyoteTimeCounter = 0f;
@@ -76,31 +76,18 @@ public class PlayerController : MonoBehaviour
 
     void HandlePlayerMovement()
     {
-        float currentSpeed = rb.velocity.magnitude;
-        float forceMultiplier;
-
-        //This method decreases player acceleration util almost 0 after getting close to max speed
-        if (currentSpeed > maxSpeed - (maxSpeed / 4))
-        {
-            forceMultiplier = movementForce * maxSpeed - (currentSpeed / maxSpeed);
-        }
-        else
-        {
-            forceMultiplier = 1;
-        }
-
         //Player movement on the X axis
         if (Input.GetButton("Horizontal"))
         {
             float directionX = Input.GetAxis("Horizontal");
-            rb.AddForce(movementForce * forceMultiplier * directionX, 0, 0, ForceMode.Impulse);
+            rb.AddForce(movementForce * directionX, 0, 0, ForceMode.VelocityChange);
         }
 
         //Player movement on the Z axis
         if (Input.GetButton("Vertical"))
         {
             float directionZ = Input.GetAxis("Vertical");
-            rb.AddForce(0, 0, movementForce * forceMultiplier * directionZ, ForceMode.Impulse);
+            rb.AddForce(0, 0, movementForce  * directionZ, ForceMode.VelocityChange);
         }
     }
 
