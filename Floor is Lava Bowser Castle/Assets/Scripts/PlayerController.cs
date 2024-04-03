@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jump buffer allows player to jump for a brief moment before touching the ground
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f )
         {
             //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
-            Debug.Log("JUMP! CoyoteTime = " + coyoteTimeCounter + "; JumpBuffer = " + jumpBufferCounter + "; allowJump = ");
-            Debug.DrawRay(rb.position, rb.position, Color.green, 2f);
+            Debug.Log("JUMP! CoyoteTime = " + coyoteTimeCounter + "; JumpBuffer = " + jumpBufferCounter);
+            Debug.DrawRay(rb.position, rb.position.normalized, Color.red, 50f);
 
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             
@@ -100,12 +100,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            isGrounded = true;
-            Debug.DrawRay(collision.contacts[0].point, collision.contacts[0].normal, Color.yellow, 100f);
-        }
-
         if (collision.gameObject.CompareTag("Death"))
         {
             audioSource.PlayOneShot(deathAudioClip, 1.8f);
@@ -118,10 +112,11 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame)
+        var contactPoint = collision.contacts[0];
+        if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
         {
             isGrounded = true;
-            Debug.DrawRay(collision.contacts[0].point, collision.contacts[0].normal, Color.red, 100f);
+            Debug.DrawRay(contactPoint.point, contactPoint.normal, Color.yellow, 50f);
         }
     }
 
@@ -132,7 +127,6 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("OnCollisionExit");
             isGrounded = false;
             jumpBufferCounter = 0f;
-            //Debug.DrawRay(collision.contacts[0].point, collision.contacts[0].normal, Color.blue, 10f);
         }
     }
 
