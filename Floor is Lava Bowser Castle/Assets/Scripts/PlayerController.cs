@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
             //TODO Death
             rb.velocity = Vector3.zero;
-            rb.position = new Vector3(16, 38, 0);
+            rb.position = new Vector3(16, 38, -11);
         }
     }
 
