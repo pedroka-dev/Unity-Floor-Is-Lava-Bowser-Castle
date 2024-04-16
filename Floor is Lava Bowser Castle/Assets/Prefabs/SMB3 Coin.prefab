@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1675879787673018655}
   - component: {fileID: 4739887563611876234}
   m_Layer: 0
-  m_Name: SMB3 Coins
+  m_Name: SMB3 Coin
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
