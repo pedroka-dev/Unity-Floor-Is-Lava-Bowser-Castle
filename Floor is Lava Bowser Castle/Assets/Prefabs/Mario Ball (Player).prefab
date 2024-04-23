@@ -146,5 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ecaa5b7bfcc5b4bafac5508d4de9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpThrust: 8
-  isGrounded: 0
+  jumpAudioClip: {fileID: 0}
+  deathAudioClip: {fileID: 0}
+  pickupCoinsAudioClip: {fileID: 0}
+  movementForce: 0.1
+  maxSpeed: 10
+  jumpForce: 3
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2

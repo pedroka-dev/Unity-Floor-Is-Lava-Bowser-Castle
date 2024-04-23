@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     AudioSource audioSource;
 
-    public AudioClip jumpAudioClip;
     public AudioClip deathAudioClip;
+    public AudioClip jumpAudioClip;
     public AudioClip pickupCoinsAudioClip;
+
+    public Vector3 respawnLocation = new(16, 38, -11);
 
     public float movementForce = 0.1f;
     public float maxSpeed = 10f;
 
+    
     public float jumpForce = 3; 
     private bool isGrounded = false;
     private bool jumpedPreviousFrame = false;   //fixes a bug that allows double jump becasue of coyote time and how unity handle OnCollision events
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
+
+    
 
     void Start()
     {
@@ -106,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
             //TODO Death
             rb.velocity = Vector3.zero;
-            rb.position = new Vector3(16, 38, -11);
+            rb.position = respawnLocation;
         }
     }
 
