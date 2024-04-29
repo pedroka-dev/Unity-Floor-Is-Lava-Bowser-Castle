@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3415908784165641362, guid: 50fd3537e9301354ca8358ee05c944f0, type: 3}
       propertyPath: m_Name
-      value: Invisible 3-Square Platform Variant Variant
+      value: Invisible Strip Platform
       objectReference: {fileID: 0}
     - target: {fileID: 7761960748406473442, guid: 50fd3537e9301354ca8358ee05c944f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7761960748406473442, guid: 50fd3537e9301354ca8358ee05c944f0, type: 3}
       propertyPath: m_LocalScale.z
