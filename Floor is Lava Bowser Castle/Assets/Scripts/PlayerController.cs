@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpAudioClip;
     public AudioClip pickupCoinsAudioClip;
 
-    public Vector3 respawnLocation = new(16, 38, -11);
+    public Transform respawnLocation;
 
     public float movementForce = 0.1f;
     public float maxSpeed = 10f;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
             //TODO Death
             rb.velocity = Vector3.zero;
-            rb.position = respawnLocation;
+            rb.position = respawnLocation.position;
         }
     }
 
