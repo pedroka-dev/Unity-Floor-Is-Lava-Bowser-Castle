@@ -67,9 +67,8 @@ public class PlayerController : MonoBehaviour
 
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f )
         {
-            //rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpThrust, rigidbody.velocity.z);
-            Debug.Log("JUMP! CoyoteTime = " + coyoteTimeCounter + "; JumpBuffer = " + jumpBufferCounter);
-            Debug.DrawRay(rb.position, rb.position.normalized, Color.red, 50f);
+            //Debug.Log("JUMP! CoyoteTime = " + coyoteTimeCounter + "; JumpBuffer = " + jumpBufferCounter);
+            //Debug.DrawRay(rb.position, rb.position.normalized, Color.red, 50f);
 
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             
@@ -121,7 +120,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
         {
             isGrounded = true;
-            Debug.DrawRay(contactPoint.point, contactPoint.normal, Color.yellow, 50f);
+            //Debug.DrawRay(contactPoint.point, contactPoint.normal, Color.yellow, 50f);
         }
     }
 
