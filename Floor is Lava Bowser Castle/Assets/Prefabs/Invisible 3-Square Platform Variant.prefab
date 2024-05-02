@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146049814327421152, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551641809469396001, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4513893551295546428, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,9 +56,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6181304801395358015, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 7175177567016973879, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
       propertyPath: m_Name
       value: Invisible 3-Square Platform Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175177567016973879, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387960675121759742, guid: c698e50c24cf55341a47e928f724b2b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -116,6 +136,14 @@ PrefabInstance:
     - target: {fileID: 3005220025245736769, guid: 7a96aaaa680a9f5479337b03545a2296, type: 3}
       propertyPath: m_Name
       value: Invisible Square Platform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005220025245736769, guid: 7a96aaaa680a9f5479337b03545a2296, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563422389236593247, guid: 7a96aaaa680a9f5479337b03545a2296, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
