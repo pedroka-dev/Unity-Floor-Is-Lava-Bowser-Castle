@@ -68664,15 +68664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394781922064512188, guid: 24838ea115e337543af86309f4bc02e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7412243
+      value: -1.3587761
       objectReference: {fileID: 0}
     - target: {fileID: 7394781922064512188, guid: 24838ea115e337543af86309f4bc02e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -58.854076
+      value: -49.954075
       objectReference: {fileID: 0}
     - target: {fileID: 7394781922064512188, guid: 24838ea115e337543af86309f4bc02e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 314.01843
+      value: 322.61844
       objectReference: {fileID: 0}
     - target: {fileID: 7394781922064512188, guid: 24838ea115e337543af86309f4bc02e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -75990,6 +75990,10 @@ PrefabInstance:
     - target: {fileID: 6113721500142855375, guid: 2c35866ebc2f7c649b3609a49e01fe7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.7837725
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584486765034827831, guid: 2c35866ebc2f7c649b3609a49e01fe7c, type: 3}
+      propertyPath: movementForce
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6584486765034827831, guid: 2c35866ebc2f7c649b3609a49e01fe7c, type: 3}
       propertyPath: respawnLocation
