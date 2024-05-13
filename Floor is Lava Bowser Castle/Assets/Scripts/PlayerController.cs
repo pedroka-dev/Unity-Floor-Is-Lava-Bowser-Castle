@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
     AudioSource audioSource;
 
-    public AudioClip deathAudioClip;
-    public AudioClip jumpAudioClip;
     public AudioClip pickupCoinsAudioClip;
 
-    public Transform respawnLocation;
-
+    //Movement
+    private bool allowPlayerMovement = true;    //for disabling player movement on death
     public float movementForce = 0.1f;
     public float maxSpeed = 10f;
 
-    
-    public float jumpForce = 3; 
+    //Jump
+    public AudioClip jumpAudioClip;
+    public float jumpForce = 3;
+
     private bool isGrounded = false;
     private bool jumpedPreviousFrame = false;   //fixes a bug that allows double jump becasue of coyote time and how unity handle OnCollision events
 
@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
+    //Death
+    public Camera mainCamera;
+    public AudioClip deathAudioClip;    
+    public Material deathMaterial;
     
 
     void Start()
@@ -37,8 +41,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        HandlePlayerJump();
-        HandlePlayerMovement();
+        if (allowPlayerMovement)
+        {
+            HandlePlayerJump();
+            HandlePlayerMovement();
+        }
     }
 
     void HandlePlayerJump()
@@ -67,22 +74,15 @@ public class PlayerController : MonoBehaviour
 
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f )
         {
-            //Debug.Log("JUMP! CoyoteTime = " + coyoteTimeCounter + "; JumpBuffer = " + jumpBufferCounter);
-            //Debug.DrawRay(rb.position, rb.position.normalized, Color.red, 50f);
-
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             
-            audioSource.PlayOneShot(jumpAudioClip, 0.3f);
+            audioSource.PlayOneShot(jumpAudioClip, 0.1f);
             isGrounded = false;
             jumpedPreviousFrame = true;
             coyoteTimeCounter = 0f;
             jumpBufferCounter = 0f;
         }
-        //Allows smaller jumps if the players release the jump button early
-        //if (Input.GetButtonUp("Jump") && rigidbody.velocity.y > 0f)
-        //{
-        //    rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y * 0.5f, rigidbody.velocity.z);
-        //}
+
     }
 
     void HandlePlayerMovement()
@@ -102,25 +102,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandlePlayerDeath()
+    {
+        Invoke("ResetScene", 2.25f);
+
+        GetComponent<MeshRenderer>().material = deathMaterial;
+        audioSource.Stop();
+        audioSource.PlayOneShot(deathAudioClip, 1f);
+
+        //makes the player face the camera
+        rb.rotation = Quaternion.Euler(0,90,0);     
+        rb.angularVelocity = Vector3.zero;
+
+        rb.velocity = Vector3.zero;
+        rb.AddForce(0, 25, 0, ForceMode.Impulse);
+        allowPlayerMovement = false;
+    }
+
+    private void ResetScene() {
+        mainCamera.cullingMask = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Death"))
+        if (allowPlayerMovement)
         {
-            audioSource.PlayOneShot(deathAudioClip, 1.8f);
-
-            //TODO Death
-            rb.velocity = Vector3.zero;
-            rb.position = respawnLocation.position;
+            if (collision.gameObject.CompareTag("Death"))
+            {
+                HandlePlayerDeath();
+            }
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        var contactPoint = collision.contacts[0];
-        if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
+        if (allowPlayerMovement)
         {
-            isGrounded = true;
-            //Debug.DrawRay(contactPoint.point, contactPoint.normal, Color.yellow, 50f);
+            var contactPoint = collision.contacts[0];
+            if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
+            {
+                isGrounded = true;
+            }
         }
     }
 
@@ -128,7 +152,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            //Debug.Log("OnCollisionExit");
             isGrounded = false;
             jumpBufferCounter = 0f;
         }
@@ -136,12 +159,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Coin"))
+        if (allowPlayerMovement)
         {
-            audioSource.PlayOneShot(pickupCoinsAudioClip, 1.8f);
+            if (collider.gameObject.CompareTag("Coin"))
+            {
+                audioSource.PlayOneShot(pickupCoinsAudioClip, 1f);
 
-            //TODO Coin pickup
-            Destroy(collider.gameObject);
+                //TODO Coin pickup
+                Destroy(collider.gameObject);
+            }
         }
     }
 }
