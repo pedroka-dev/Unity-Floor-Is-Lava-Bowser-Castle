@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferCounter;
 
     //Death
-    public Camera mainCamera;
+    public Camera cameraToFadeToBlack;
     public AudioClip deathAudioClip;    
     public Material deathMaterial;
     
@@ -110,17 +109,16 @@ public class PlayerController : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(deathAudioClip, 1f);
 
-        //makes the player face the camera
-        rb.rotation = Quaternion.Euler(0,90,0);     
-        rb.angularVelocity = Vector3.zero;
 
+        rb.rotation = Quaternion.Euler(0,90,0); ////makes the player face the camera    
+        rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
         rb.AddForce(0, 25, 0, ForceMode.Impulse);
         allowPlayerMovement = false;
     }
 
     private void ResetScene() {
-        mainCamera.cullingMask = 0;
+        cameraToFadeToBlack.cullingMask = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
