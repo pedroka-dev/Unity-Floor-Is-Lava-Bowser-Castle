@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,7 +31,12 @@ public class PlayerController : MonoBehaviour
     public Camera cameraToFadeToBlack;
     public AudioClip deathAudioClip;    
     public Material deathMaterial;
-    
+
+    //Victory
+    public AudioClip victoryAudioClip;
+    private bool isGameWon = false;
+
+    private bool IsFloor(Collision collision) => collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("FloorVictory");
 
     void Start()
     {
@@ -117,11 +123,17 @@ public class PlayerController : MonoBehaviour
         allowPlayerMovement = false;
     }
 
+    private void HandlePlayerVictory()
+    {
+        isGameWon = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(victoryAudioClip, 1f); ;
+    }
+
     private void ResetScene() {
         cameraToFadeToBlack.cullingMask = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 
     void OnCollisionEnter(Collision collision)
     {
@@ -131,6 +143,10 @@ public class PlayerController : MonoBehaviour
             {
                 HandlePlayerDeath();
             }
+            if (!isGameWon && collision.gameObject.CompareTag("FloorVictory"))
+            {
+                HandlePlayerVictory();
+            }
         }
     }
 
@@ -139,16 +155,17 @@ public class PlayerController : MonoBehaviour
         if (allowPlayerMovement)
         {
             var contactPoint = collision.contacts[0];
-            if (collision.gameObject.CompareTag("Floor") && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
+            if (IsFloor(collision) && !jumpedPreviousFrame && contactPoint.normal.y >= 0.34)
             {
                 isGrounded = true;
             }
+ 
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (IsFloor(collision))
         {
             isGrounded = false;
             jumpBufferCounter = 0f;
@@ -157,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (allowPlayerMovement)
+        if (allowPlayerMovement && !isGameWon)
         {
             if (collider.gameObject.CompareTag("Coin"))
             {

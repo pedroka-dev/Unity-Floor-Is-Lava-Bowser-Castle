@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Death
   - Coin
+  - FloorVictory
   layers:
   - Default
   - TransparentFX
