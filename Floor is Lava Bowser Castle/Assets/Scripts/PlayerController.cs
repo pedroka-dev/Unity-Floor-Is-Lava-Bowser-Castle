@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
 
     //Death
     public Camera cameraToFadeToBlack;
-    public AudioClip deathAudioClip;    
+    public AudioClip deathAudioClip;
+    public AudioClip bruhMomentAudioClip;
     public Material deathMaterial;
 
     //Victory
@@ -195,6 +196,13 @@ public class PlayerController : MonoBehaviour
                 collectedCoins++;
                 Destroy(collider.gameObject);
             }
+
+            if (collider.gameObject.CompareTag("BruhMomment"))
+            {
+                audioSource.PlayOneShot(bruhMomentAudioClip, 3f);
+            }
         }
+
+        
     }
 }
