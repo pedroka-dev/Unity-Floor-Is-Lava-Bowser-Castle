@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
     public AudioClip victoryAudioClip;
     private bool isGameWon = false;
 
+    //UI
+    public int collectedCoins = 0;
+    public float runTime = new();
+
     private bool IsFloor(Collision collision) => collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("FloorVictory");
 
     void Start()
@@ -44,12 +48,21 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+ 
     void FixedUpdate()
     {
         if (allowPlayerMovement)
         {
             HandlePlayerJump();
             HandlePlayerMovement();
+        }
+    }
+
+    private void Update()
+    {
+        if (!isGameWon)
+        {
+            runTime = (float)Math.Round(runTime + Time.deltaTime, 2);
         }
     }
 
@@ -179,8 +192,7 @@ public class PlayerController : MonoBehaviour
             if (collider.gameObject.CompareTag("Coin"))
             {
                 audioSource.PlayOneShot(pickupCoinsAudioClip, 1f);
-
-                //TODO Coin pickup
+                collectedCoins++;
                 Destroy(collider.gameObject);
             }
         }
