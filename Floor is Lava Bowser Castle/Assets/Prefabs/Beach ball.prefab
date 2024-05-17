@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d6e3a1876df4c45847e1d577fd8e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyEntityAudioClip: {fileID: 8300000, guid: 3fd72a31072bb8743b6f0ebb047e49be, type: 3}
+  destroyEntityAudioClip: {fileID: 8300000, guid: c180e569ff723d544bb9ac2c9896092e, type: 3}
 --- !u!82 &6721998322669233191
 AudioSource:
   m_ObjectHideFlags: 0

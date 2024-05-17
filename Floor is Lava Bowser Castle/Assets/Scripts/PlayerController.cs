@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip pickupCoinsAudioClip;
 
     //Movement
-    private bool allowPlayerMovement = true;    //for disabling player movement on death
     public float movementForce = 0.1f;
     public float maxSpeed = 10f;
+    internal bool allowPlayerMovement = true;    //for disabling player movement on death
 
     //Jump
     public AudioClip jumpAudioClip;
@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private bool jumpedPreviousFrame = false;   //fixes a bug that allows double jump becasue of coyote time and how unity handle OnCollision events
 
-    public float coyoteTime = 0.2f;
+    public float coyoteTimeFactor = 0.2f;
     private float coyoteTimeCounter;
 
-    public float jumpBufferTime = 0.2f;
+    public float jumpBufferTimeFactor = 0.2f;
     private float jumpBufferCounter;
 
     //Death
@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
 
     //Victory
     public AudioClip victoryAudioClip;
-    private bool isGameWon = false;
+    internal bool isGameWon = false;
 
     //UI
-    public int collectedCoins = 0;
-    public float runTime = new();
+    internal int collectedCoins = 0;
+    internal float runTime = new();
 
     private bool IsFloor(Collision collision) => collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("FloorVictory");
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         //Coyote time allows player to jump a brief moment after being on air
         if (isGrounded)
         {
-            coyoteTimeCounter = coyoteTime;
+            coyoteTimeCounter = coyoteTimeFactor;
         }
         else
         {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         //Jump buffer allows player to jump for a brief moment before touching the ground
         if (Input.GetButton("Jump"))
         {
-            jumpBufferCounter = jumpBufferTime;
+            jumpBufferCounter = jumpBufferTimeFactor;
         }
         else
         {
