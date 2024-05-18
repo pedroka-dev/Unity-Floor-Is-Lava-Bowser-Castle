@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Coin"))
             {
-                audioSource.PlayOneShot(pickupCoinsAudioClip, 1f);
+                audioSource.PlayOneShot(pickupCoinsAudioClip, 0.5f);
                 collectedCoins++;
                 Destroy(collider.gameObject);
             }
