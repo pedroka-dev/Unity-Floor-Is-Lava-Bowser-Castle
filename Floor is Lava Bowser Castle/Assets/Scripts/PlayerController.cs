@@ -106,6 +106,12 @@ public class PlayerController : MonoBehaviour
 
     void HandlePlayerMovement()
     {
+        //commit die
+        if (Input.GetKey(KeyCode.R))
+        {
+            HandlePlayerDeath();
+        }
+
         //Player movement on the X axis
         if (Input.GetButton("Horizontal"))
         {
@@ -126,6 +132,7 @@ public class PlayerController : MonoBehaviour
         Invoke("ResetScene", 2.25f);
 
         GetComponent<MeshRenderer>().material = deathMaterial;
+
         audioSource.Stop();
         audioSource.PlayOneShot(deathAudioClip, 1f);
 
