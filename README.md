@@ -18,3 +18,7 @@ You can play it online with the [WebGL version on Unity Play](https://play.unity
 - There is a known bug where sometimes the player makes a hyperjump. [Still needs to be fixed](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/issues/1).
 
 
+# Legal Notice:
+This fangame is a PARODY, allowing to be considered FAIR USE under the United States of America The Copyright Act of 1976. 
+This project has been made for entertainment purposes only. No revenue or donations have been accepted for the development of this media. 
+All Super Mario Bros branding, assets and revenue are property of Nintendo Co., Ltd.
