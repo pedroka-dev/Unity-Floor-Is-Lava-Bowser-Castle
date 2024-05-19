@@ -4,6 +4,9 @@
 This is part of the Unity Essentials tutorial, but I got TOTALLY carried away and turned a 30 minutes project into a 2 month one.
 This is my first real finished game. I hope you have as much fun playing it as I had making it.
 
+# Where to Play it
+You can play it online with the [WebGL version on Unity Play](https://play.unity.com/mg/other/webgl-builds-410425) or download the [Windows .EXE build](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/releases) for better performance.
+
 # Commands:
 - W,A,S,D to move.
 - Space to jump
@@ -12,5 +15,6 @@ This is my first real finished game. I hope you have as much fun playing it as I
 # Additional Info:
 - There are 4 secret areas with Easter eggs around the level. Some might be... questionable to say the least.
 - The beach balls don't do nothing btw. They are just a far away memory of when this project was just a physics tech demo.
-- You can play it online with the [WebGL version on Unity Play](https://play.unity.com/mg/other/webgl-builds-410425) or download the [Windows .EXE build](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/releases) for better performance.
 - There is a known bug where sometimes the player makes a hyperjump. [Still needs to be fixed](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/issues/1).
+
+
