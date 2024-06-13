@@ -17,6 +17,12 @@ You can play it online with the [WebGL version on Unity Play](https://play.unity
 - The beach balls don't do nothing btw. They are just a far away memory of when this project was just a physics tech demo.
 - There is a known bug where sometimes the player makes a hyperjump. [Still needs to be fixed](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/issues/1).
 
+![bowser castle 1](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/assets/50923316/33459690-d525-41bf-973b-51872d45b4b7)
+![bowser castle 2](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/assets/50923316/edab8126-4826-42e0-83c4-786dd2c09e3c)
+![bowser castle 3](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/assets/50923316/c2dd037e-b929-4743-b7f3-306ef0feffdf)
+![bowser castle 4](https://github.com/pedro-ca/Unity-Floor-Is-Lava-Bowser-Castle/assets/50923316/2f8d3ef9-57d7-4c00-9984-f5e4ce58dc0b)
+
+
 
 # Legal Notice
 This fangame is a PARODY, allowing to be considered FAIR USE under the United States of America The Copyright Act of 1976. 
